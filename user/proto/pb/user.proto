@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option go_package = "./proto/service";
+
+package service;
+
+message UserModel{
+  string userId = 1;
+  string pwd = 2;
+  string nickname = 3;
+  string signature = 4;
+}
+
+message UserRequest{
+  UserModel user = 1;
+}
+
+message UserResponse{
+  UserModel user = 1;
+  int64 code = 2;
+  string Msg = 3;
+}
+
+service UserService{
+  rpc UserRegister(UserRequest) returns(UserResponse);
+  rpc UserLogin(UserRequest) returns(UserResponse);
+  rpc UserChangeInfo(UserRequest) returns(UserResponse);
+  rpc UserGetInfo(UserRequest) returns(UserResponse);
+  rpc UserDelete(UserRequest) returns(UserResponse);
+}
